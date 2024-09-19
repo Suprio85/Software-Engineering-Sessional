@@ -2,15 +2,21 @@ import java.util.Scanner;
 
 import builder.ibuilder;
 import builder.ticketingSystemBuilder;
-import component.WebServer.Django;
-import component.WebServer.Ruby;
-import component.WebServer.nodeJS;
 import component.WebServer.webServer;
-import component.internetConnection.GSM;
 import component.internetConnection.Internet;
-import component.internetConnection.Wifi;
 import director.Director;
-import factory.*;
+import factory.AdvancedPackageFactory;
+import factory.PremiumPackageFactory;
+import factory.basicPackageFactory;
+import factory.packageFactory;
+import factory.standardPackageFactory;
+import factory.internetFactory.GSMFactory;
+import factory.internetFactory.ethernetFactory;
+import factory.internetFactory.wifiFactory;
+import factory.webServerFactory.djangoFactory;
+import factory.webServerFactory.nodejsFactory;
+import factory.webServerFactory.rubyFactory;
+
 
 
 
@@ -55,13 +61,13 @@ public class Main {
 
             switch (internetChoice) {
                 case 1:
-                     internet = new GSM();
+                     internet = new GSMFactory().createInternet();
                     break;
                 case 2:
-                     internet = new Wifi();
+                     internet = new wifiFactory().createInternet();
                     break;
                 case 3:
-                    internet = new Wifi();
+                    internet = new ethernetFactory().createInternet();
                     break;
                 default:
                     break;
@@ -78,13 +84,13 @@ public class Main {
 
             switch (webServerChoice) {
                 case 1:
-                    webServer = new Django();
+                    webServer = new djangoFactory().createWebServer();
                     break;
                 case 2:
-                    webServer = new nodeJS();
+                    webServer = new nodejsFactory().createWebServer();
                     break;
                 case 3:
-                    webServer = new Ruby();
+                    webServer = new rubyFactory().createWebServer();
                     break;
                 default:
                     break;
