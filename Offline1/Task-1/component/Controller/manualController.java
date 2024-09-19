@@ -3,8 +3,9 @@ package component.Controller;
 public class manualController implements Controller {
 
     @Override
-    public void create() {
-        System.out.println("Manual Controller Created");
+    public String create() {
+        // System.out.println("Manual Controller added to the system.");
+        return "Manual Controller added to the system.";
     }
    
     

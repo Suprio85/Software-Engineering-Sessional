@@ -1,6 +1,7 @@
 package Problem2;
 
-public interface interestCalculator {
+public interface Operation {
 
     public double calculateInterest(double amount, int years);
+    
 }

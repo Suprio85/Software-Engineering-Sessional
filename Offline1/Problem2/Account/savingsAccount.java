@@ -1,8 +1,8 @@
 package Problem2.Account;
-import Problem2.interestCalculator;
+import Problem2.Operation;
 
 
-public abstract class Account implements interestCalculator {
+public abstract class savingsAccount implements Operation {
     double interestRate;
 
     public abstract double calculateInterest(double amount, int years);

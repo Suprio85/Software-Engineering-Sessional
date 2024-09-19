@@ -1,6 +1,6 @@
 package Problem2.Account;
 
-public class VIPAcoount extends Account {
+public class VIPAcoount extends savingsAccount {
 
     public VIPAcoount() {
         this.interestRate = 0.05;

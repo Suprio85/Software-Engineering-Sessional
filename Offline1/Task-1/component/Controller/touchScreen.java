@@ -4,8 +4,9 @@ package component.Controller;
 public class touchScreen implements Controller{
 
     @Override
-    public void create() {
-       System.out.println(" built in touch screen  ");
+    public String create() {
+        // System.out.println("Touch Screen Controller added to the system.");
+        return "Touch Screen Controller added to the system.";
     }
 
 }

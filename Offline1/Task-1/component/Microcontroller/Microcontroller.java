@@ -8,11 +8,14 @@ public abstract class Microcontroller{
    String storage;
    Controller controller;
 
-      public void create() {
-         System.out.println(getClass().getSimpleName()+"Added To the system"); 
-         System.out.println(addStorage()); 
-         addController().create(); 
-         addIdentification().create(); 
+      public String create() {
+        return getClass().getSimpleName() + " added to the system."
+        + "\n"
+        +addIdentification().create()
+        + "\n"
+        +addStorage()
+         + "\n"
+        +addController().create(); 
      };
    public abstract Identification addIdentification();
    public abstract String addStorage();

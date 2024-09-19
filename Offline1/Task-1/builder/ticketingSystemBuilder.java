@@ -31,7 +31,7 @@ public class ticketingSystemBuilder implements ibuilder {
     @Override
     public void build(){
 
-        system.install();
+       System.out.println(system);
     }
     @Override
     public void addPayment (Payment payment){

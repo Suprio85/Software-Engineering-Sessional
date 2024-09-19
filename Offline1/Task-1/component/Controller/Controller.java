@@ -1,5 +1,5 @@
 package component.Controller;
 
 public interface Controller{
-    void create();
+    String create();
 }

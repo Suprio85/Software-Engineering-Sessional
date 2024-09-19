@@ -35,12 +35,9 @@ public class ticketingSystem {
 
     }
 
-    public void install(){
-        microcontroller.create();
-        display.create();
-        internet.connect();
-        webserver.create();
-        payment.pay();
+    @Override 
+    public  String toString(){
+       return microcontroller.create() + "\n" + display.create() + "\n" + internet.connect() + "\n" + webserver.create() + "\n" + payment.pay();
     }
 
    
