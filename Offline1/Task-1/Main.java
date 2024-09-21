@@ -46,8 +46,8 @@ public class Main {
                     packageFactory = new PremiumPackageFactory();
                     break;
                 default:
-                    System.out.println("Invalid Choice");
-                    break;
+                    System.out.println("Invalid Choice.Please choose again between 1-4");
+                    return;
             }
 
             System.out.println("Enter the Type of internet-connection you want: ");
@@ -67,10 +67,15 @@ public class Main {
                      internet = new wifiFactory().createInternet();
                     break;
                 case 3:
+                    if (choice == 1 || choice == 2){
+                        System.out.println("Inavalid choice.Ethernet is not available for Basic and Standard Package");
+                        return;
+                    }
                     internet = new ethernetFactory().createInternet();
                     break;
                 default:
-                    break;
+                    System.out.println("Invalid Choice");
+                    return;
             }
 
             int webServerChoice;
@@ -93,17 +98,13 @@ public class Main {
                     webServer = new rubyFactory().createWebServer();
                     break;
                 default:
-                    break;
+                    System.out.println("Invalid choice. Please make a choice between 1-3");
             }
 
           ibuilder ticketingSystemBuilder = new ticketingSystemBuilder();
 
           Director  director = new Director(ticketingSystemBuilder, packageFactory.createPackage(), internet, webServer);
-          director.construct();
-
-
-
-        
+          director.construct();        
         }catch(Exception e){
             System.out.println("Error: "+e);
 
