@@ -10,4 +10,5 @@ public class RegularLoan extends Loan {
         public double calculateInterest(double amount, int years) {
             return amount * interestRate * years;
         }
+
 }

@@ -30,7 +30,7 @@ public class Main {
                     break;
                 default:
                     System.out.println("Invalid Choice");
-                    break;
+                    return;
             }
 
             bankService bankService = new bankService(customer);
