@@ -9,6 +9,11 @@ public class Combo implements menuItem {
         this.name = name;
         this.items = new ArrayList<menuItem>();
     }
+    public Combo(Combo combo){
+        this.name = combo.getName();
+        this.items = combo.getItems();
+    }
+
     @Override
     public String getName() {
         return this.name;
@@ -39,7 +44,6 @@ public class Combo implements menuItem {
         this.items.add(item);
     }
 
-   
     public menuItem removeItem(menuItem item){
 
         menuItem removed = null;

@@ -57,8 +57,5 @@ public abstract class Decorator extends Combo {
     @Override
     public menuItem getItem(String name) {
         return combo.getItem(name);
-    }
-
-
-    
+    }    
 }

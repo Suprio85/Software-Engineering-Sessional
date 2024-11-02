@@ -14,7 +14,7 @@ public class freeItemDecorator extends Decorator {
 
     @Override
     public void addItem(menuItem item){
-        this.item = new freeItem( item.getName());
+        this.item = new freeItem(item.getName());
         super.addItem(this.item);
     }
 }

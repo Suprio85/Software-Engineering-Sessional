@@ -11,8 +11,7 @@ double discountedPrice;
         this.discount = discount;
         this.discountedPrice = super.getPrice()*(1-discount/100);
     }
-
-  
+    
     @Override
     public double getPrice() {
         return this.discountedPrice;

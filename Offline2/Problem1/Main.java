@@ -1,5 +1,4 @@
 import java.util.Scanner;
-
 import Decorator.discountDecorator;
 import Decorator.freeItemDecorator;
 import Items.Combo;
@@ -24,6 +23,7 @@ public class Main {
             {
                 System.out.println("Press 1 to create a combo, 2 to view menu, 0 to exit:");
                 int choice = sc.nextInt();
+                double discount = 0;
                 switch (choice) {
                     case 1:{
                         System.out.println("Enter the name of the combo:");
@@ -35,6 +35,9 @@ public class Main {
                           System.out.println("Available commands: Add [item], Remove [item], Free [item], Discount [percentage], Done");
                           String command = sc.nextLine();
                             if (command.equalsIgnoreCase("Done")) {
+                                if(discount!=0){
+                                    newcombo = new discountDecorator(newcombo, discount);
+                                }
                                 System.out.println(newcombo.showDetails());
                                 menu.addItem(newcombo);
                                 break;
@@ -43,7 +46,8 @@ public class Main {
                             if (tokens[0].equalsIgnoreCase("Add")) {
                                 menuItem item = menu.getItem(tokens[1]);
                                 if(item!=null){
-                                    newcombo.addItem(item);
+                                   newcombo = new Combo(newcombo);
+                                   newcombo.addItem(item);
                                 }
                                 
                             } else if (tokens[0].equalsIgnoreCase("Remove")) {
@@ -60,8 +64,7 @@ public class Main {
                                 }
                                 
                             } else if (tokens[0].equalsIgnoreCase("Discount")) {
-                                double discount = Double.parseDouble(tokens[1]);
-                                newcombo = new discountDecorator(newcombo, discount);
+                                discount = Double.parseDouble(tokens[1]);  
                             }
                             
                         }
@@ -79,8 +82,6 @@ public class Main {
                     System.out.println("Invalid Input");
                     break;
                 }
-
-
             }
 
         }catch(Exception e){
