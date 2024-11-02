@@ -4,20 +4,22 @@ import java.util.List;
 public class Combo implements menuItem {
     String name;
     List<menuItem> items ;
+    double totalPrice;
+    double discount;
+    double discountedPrice;
     
     public Combo(String name){
+
         this.name = name;
         this.items = new ArrayList<menuItem>();
+        this.discount = 0;
+        this.totalPrice = 0;
     }
-    public Combo(Combo combo){
-        this.name = combo.getName();
-        this.items = combo.getItems();
-    }
+   
 
     @Override
     public String getName() {
         return this.name;
-
     }
     @Override
     public double getPrice() {
@@ -26,7 +28,8 @@ public class Combo implements menuItem {
         for(menuItem item : items){
             total += item.getPrice();
         }
-        return total;
+        this.totalPrice = total;
+        return this.totalPrice;
     }
     @Override
     public String getDescription() {
@@ -42,10 +45,20 @@ public class Combo implements menuItem {
     
     public void addItem(menuItem item){
         this.items.add(item);
+        this.totalPrice += item.getPrice();
     }
 
-    public menuItem removeItem(menuItem item){
+    public void addFreeItem(menuItem item){
+        this.items.add(new freeItem(item.getName()));
+    }
+    
+    public void addDiscount(double discount){
+          this.discount = discount;
+          this.discountedPrice = this.totalPrice*(1-discount/100);
+    }
 
+
+    public menuItem removeItem(menuItem item){
         menuItem removed = null;
         for(menuItem i : items){
             if(i.getName().equalsIgnoreCase(item.getName())){
@@ -55,14 +68,6 @@ public class Combo implements menuItem {
             }
         }
         return removed;
-    }
-
-    public String showItems(){
-        String items = "";
-        for(menuItem item : this.items){
-            items+=item.getDescription()+"\n";
-        }
-        return items;
     }
 
     public menuItem getItem(String name){
@@ -78,11 +83,19 @@ public class Combo implements menuItem {
         return this.items;
     }
 
-    public String showPrice(){
-        return "Total Price: " + this.getPrice()+"\n";
-    }
+     public String showDetails(){
+        
+        String details = "";
+        details+= this.name + ":\n";
 
-    public String showDetails(){
-        return this.getName()+'\n'+this.showItems()+'\n' + this.showPrice();
-    }
+        for(menuItem item : this.items){
+            details+= "  -"+item.getDescription() + '\n';
+        }
+        
+        details+= "Total Price: " + this.totalPrice;
+        if(discount!=0){
+            details+= '\n' + "Discount: " + discount + "%" + '\n' + "Discounted total: " + this.discountedPrice;
+        }
+        return details;
+}
 }

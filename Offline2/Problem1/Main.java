@@ -1,6 +1,5 @@
 import java.util.Scanner;
-import Decorator.discountDecorator;
-import Decorator.freeItemDecorator;
+
 import Items.Combo;
 import Items.menuItem;
 import Items.singleItem;
@@ -15,7 +14,6 @@ public class Main {
         menu.addItem(new singleItem("Wedges", 150));
         menu.addItem(new singleItem("Shawarma", 200));
         menu.addItem(new singleItem("Drink", 25));
-       
         Scanner sc = new Scanner(System.in);
         try{
             System.out.println(menu.getMenu());
@@ -36,7 +34,7 @@ public class Main {
                           String command = sc.nextLine();
                             if (command.equalsIgnoreCase("Done")) {
                                 if(discount!=0){
-                                    newcombo = new discountDecorator(newcombo, discount);
+                                    newcombo.addDiscount(discount);
                                 }
                                 System.out.println(newcombo.showDetails());
                                 menu.addItem(newcombo);
@@ -46,7 +44,6 @@ public class Main {
                             if (tokens[0].equalsIgnoreCase("Add")) {
                                 menuItem item = menu.getItem(tokens[1]);
                                 if(item!=null){
-                                   newcombo = new Combo(newcombo);
                                    newcombo.addItem(item);
                                 }
                                 
@@ -59,8 +56,7 @@ public class Main {
                             } else if (tokens[0].equalsIgnoreCase("Free")) {
                                 menuItem item = menu.getItem(tokens[1]);
                                 if(item!=null){
-                                    newcombo = new freeItemDecorator(newcombo);
-                                    newcombo.addItem(item);
+                                   newcombo.addFreeItem(item);
                                 }
                                 
                             } else if (tokens[0].equalsIgnoreCase("Discount")) {
@@ -87,10 +83,6 @@ public class Main {
         }catch(Exception e){
             System.out.println("Invalid Input");
             sc.close();
-        }
-
-
-
-      
+        }      
     }
 }
