@@ -29,7 +29,7 @@ public class Combo implements menuItem {
             total += item.getPrice();
         }
         this.totalPrice = total;
-        return this.totalPrice;
+        return this.totalPrice-this.totalPrice*(discount/100);
     }
     @Override
     public String getDescription() {
@@ -64,6 +64,7 @@ public class Combo implements menuItem {
             if(i.getName().equalsIgnoreCase(item.getName())){
                 removed = i;
                 items.remove(i);
+                this.totalPrice -= i.getPrice();
                 break;
             }
         }
