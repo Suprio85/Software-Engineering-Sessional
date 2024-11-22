@@ -62,7 +62,6 @@ public class Main {
                             } else if (tokens[0].equalsIgnoreCase("Discount")) {
                                 discount = Double.parseDouble(tokens[1]);  
                             }
-                            
                         }
                     }
                     break;
